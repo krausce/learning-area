@@ -13,12 +13,66 @@
 <body>
 
   <input class="numberInput" type="text">
+  <button>Calculate x^n</button>
   <p></p>
   
   <script>
     var input = document.querySelector('.numberInput');
     var para = document.querySelector('p');
 
+    function squared(num) {
+      return num*num;
+    }
+    function cubed(num){
+      return num**3;
+    }
+    function squareRoot(num) {
+      return num**(1/2);
+    }
+    function cubeRoot (num) {
+      return num**(1/30);
+    }
+    function circleCircumf (num) {
+      return 2*Math.PI*num;
+    }
+    function factorial(num){
+      var x = num;
+      while(x>1){
+        num *= x - 1;
+        x--;
+      }
+      return num;
+    }
+    input.onchange = function () {
+      var num = input.value;
+      if(isNaN(num)){
+        para.textContent = 'You need to enter a number!';
+      } else {
+        para.textContent = num + ' squared is ' + squared(num) + '. ' + 
+                            num + ' cubed is ' + cubed(num) + '. ' + 
+                            num + ' factorial is ' + factorial(num) + '. ' +
+                            num + ' cube root is ' + cubeRoot(num) + '. ' +
+                            num + ' square root is ' + squareRoot(num) + '. ' +
+                            num + ' as a radius of a circle is equal to a circle of circumference ' + circleCircumf(num) + '. ';
+      }
+    }
+  function pow(x, n){
+    return x**n;   
+  }
+  let button = document.querySelector('button');
+  button.onclick = function () {
+    let x = prompt('x?', '');
+    let n = prompt('n?', '');
+    n < 1 ? alert(`Power ${n} is not supported, use an integer greater than 0`) : para.textContent = (pow(x, n));
+  }
+
+  let ask = question => {
+     return prompt(question) === 'yes' ? 'You agreed.' : 'You canceled the execution.';
+  }
+
+  para.textContent = ask('Do you agree?');
+  
+  
   </script>
 </body>
 </html>
